@@ -1,0 +1,558 @@
+```html
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">MEDAN TOBA SUMATERA | Wisata Halal Medan - Danau Toba</title>
+  <meta name="description" content="Paket wisata Danau Toba dari Medan ke Samosir, Berastagi, Sibayak. Hiking, waterfall, culture & more. Booking via WhatsApp!">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0ea5e9',
+            secondary: '#10b981',
+            accent: '#8b5cf6',
+            'bg-dark': '#0f172a',
+            'card-dark': '#1e293b'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hero-bg {
+      background-image: url('hero.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+    }
+    .hero-overlay {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 30, 60, 0.7) 100%);
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 10;
+    }
+    .btn-whatsapp {
+      background: linear-gradient(45deg, #25D366, #128C7E);
+      color: white;
+    }
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 15px rgba(37, 211, 102, 0.4);
+    }
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: linear-gradient(45deg, #25D366, #128C7E);
+      color: white;
+      padding: 16px;
+      border-radius: 50%;
+      font-size: 24px;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
+    }
+    .fade-in.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .itinerary-day {
+      border-left: 3px solid #10b981;
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+    }
+    .package-card {
+      transition: all 0.3s;
+    }
+    .package-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    .social-button {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: white;
+      font-size: 18px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .social-button:hover {
+      transform: scale(1.1);
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    .accordion-content.expanded {
+      max-height: 200px;
+      transition: max-height 0.5s ease-in;
+    }
+    @media (max-width: 640px) {
+      .text-4xl { font-size: 1.8rem; }
+    }
+    .dark .text-gray-800, .dark .text-gray-700, .dark .text-gray-600, .dark .text-gray-500 {
+      color: #e2e8f0;
+    }
+    .dark .text-gray-400, .dark .text-gray-300, .dark .text-gray-200 {
+      color: #cbd5e1;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 font-inter transition-colors duration-300">
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/6281397606622?text=Halo!%20Saya%20ingin%20booking%20paket%20wisata." target="_blank" class="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Header -->
+  <header class="fixed w-full bg-white/90 dark:bg-gray-900/95 backdrop-blur-md shadow-sm z-50 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <img src="logo.png" alt="Logo MEDAN TOBA SUMATERA" class="w-10 h-10 object-contain">
+        <div>
+          <h3 class="text-lg font-bold">MEDAN TOBA SUMATERA</h3>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Tour & Travel</p>
+        </div>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex space-x-8">
+        <a href="#home" class="text-sm font-medium text-gray-700 hover:text-green-600" data-i18n="nav-home">Beranda</a>
+        <a href="packages.html" class="text-sm font-medium text-gray-700 hover:text-green-600" data-i18n="nav-packages">Paket Wisata</a>
+        <a href="destinations.html" class="text-sm font-medium text-gray-700 hover:text-green-600" data-i18n="nav-destinations">Destinasi</a>
+        <a href="gallery.html" class="text-sm font-medium text-gray-700 hover:text-green-600" data-i18n="nav-gallery">Galeri</a>
+        <a href="about.html" class="text-sm font-medium text-gray-700 hover:text-green-600" data-i18n="nav-about">Tentang Kami</a>
+        <a href="contact.html" class="text-sm font-medium text-gray-700 hover:text-green-600" data-i18n="nav-contact">Kontak</a>
+      </nav>
+
+      <!-- Social Media & Toggle -->
+      <div class="flex items-center space-x-4">
+        <a href="https://facebook.com/medantobasumatera" target="_blank" class="social-button bg-blue-600 hover:shadow-lg" title="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://instagram.com/medantobasumatera" target="_blank" class="social-button bg-gradient-to-r from-purple-500 to-pink-500 hover:shadow-lg" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://youtube.com/@medantobasumatera" target="_blank" class="social-button bg-red-600 hover:shadow-lg" title="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <button id="theme-toggle" class="text-gray-700 dark:text-gray-300" title="Toggle Dark Mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button id="lang-toggle" class="text-sm font-medium text-gray-700 dark:text-gray-300" data-i18n="lang-toggle">EN</button>
+        <button id="menu-toggle" class="md:hidden text-gray-700 dark:text-gray-300">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 border-t dark:border-gray-700">
+      <div class="px-6 py-4 space-y-3 text-gray-800 dark:text-gray-200">
+        <a href="#home" class="block py-2.5" data-i18n="nav-home">Beranda</a>
+        <a href="packages.html" class="block py-2.5" data-i18n="nav-packages">Paket Wisata</a>
+        <a href="destinations.html" class="block py-2.5" data-i18n="nav-destinations">Destinasi</a>
+        <a href="gallery.html" class="block py-2.5" data-i18n="nav-gallery">Galeri</a>
+        <a href="about.html" class="block py-2.5" data-i18n="nav-about">Tentang Kami</a>
+        <a href="contact.html" class="block py-2.5" data-i18n="nav-contact">Kontak</a>
+        <div class="flex space-x-4 mt-4">
+          <a href="https://facebook.com/medantobasumatera" target="_blank" class="social-button bg-blue-600">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com/medantobasumatera" target="_blank" class="social-button bg-gradient-to-r from-purple-500 to-pink-500">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://youtube.com/@medantobasumatera" target="_blank" class="social-button bg-red-600">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <button id="theme-toggle-mobile" class="text-gray-700 dark:text-gray-300">
+            <i class="fas fa-moon"></i> <span data-i18n="theme-toggle">Mode Gelap</span>
+          </button>
+          <button id="lang-toggle-mobile" class="text-gray-700 dark:text-gray-300" data-i18n="lang-toggle">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="pt-28 pb-16 hero-bg hero-content text-white">
+    <div class="hero-overlay"></div>
+    <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center text-center lg:text-left">
+      <div class="space-y-6 fade-in">
+        <h1 class="text-4xl md:text-5xl font-bold" data-i18n="hero-title">
+          Wisata Nyaman & Halal<br>
+          <span class="text-green-400">Medan – Danau Toba</span>
+        </h1>
+        <p class="text-lg" data-i18n="hero-desc">
+          Dengan supir Muslim lokal, mobil bersih, dan itinerary yang fleksibel. Pengalaman tak terlupakan dimulai dari sini.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 mt-6 justify-center lg:justify-start">
+          <a href="packages.html" class="btn-whatsapp text-center px-8 py-4 rounded-lg font-semibold flex items-center justify-center">
+            <i class="fab fa-whatsapp mr-2"></i> <span data-i18n="btn-book">Pesan via WhatsApp</span>
+          </a>
+          <a href="packages.html" class="border-2 border-green-400 text-green-400 text-center px-8 py-4 rounded-lg font-semibold hover:bg-green-900/30">
+            <span data-i18n="btn-see-packages">Lihat Paket</span>
+          </a>
+        </div>
+      </div>
+      <div></div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-12 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8 text-center">
+      <div class="fade-in">
+        <p class="text-3xl font-bold text-green-600">500+</p>
+        <p class="text-gray-600 dark:text-gray-300" data-i18n="stat-customers">Pelanggan Puas</p>
+      </div>
+      <div class="fade-in">
+        <p class="text-3xl font-bold text-green-600">6 Tahun</p>
+        <p class="text-gray-600 dark:text-gray-300" data-i18n="stat-experience">Pengalaman</p>
+      </div>
+      <div class="fade-in">
+        <p class="text-3xl font-bold text-green-600">100%</p>
+        <p class="text-gray-600 dark:text-gray-300" data-i18n="stat-halal">Muslim Friendly</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Daftar Paket Wisata -->
+  <section id="packages" class="py-24 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16 fade-in">
+        <h2 class="text-3xl md:text-4xl font-bold" data-i18n="packages-title">Paket Wisata Tersedia</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 mt-4" data-i18n="packages-desc">Pilih paket yang sesuai dengan waktu dan anggaran Anda.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+
+        <!-- Paket 3 Hari 2 Malam -->
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden package-card fade-in">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-800 dark:text-white" data-i18n="package-3-title">Paket 3 Hari 2 Malam</h3>
+            <p class="text-3xl font-extrabold text-green-600 mb-4">RM 1200 (2 orang)</p>
+            <p class="text-lg text-gray-600 mb-2" id="price-3h2m"></p>
+            <p class="text-sm text-red-500 mb-4" data-i18n="hiking-note">* Hiking Sibayak: RM 100/pax (cash)</p>
+            <div class="space-y-3 mb-6 text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+              <div class="itinerary-day"><strong>Day 1:</strong> Pick up Kualanamu Airport → Paten Jaya / Mbah Damanik → Kebun Teh Sidamanik → Simarjarunjung View → Ferry via Tigaras → Pantai Batu Hoda → Makan malam → Check in Hotel Samosir</div>
+              <div class="itinerary-day"><strong>Day 2:</strong> Sarapan, check out → Batu Siallagan → Bukit Burung View → Holbung Hills → Bukit Sibea-bea → Efrata Waterfall → Tele Tower → Loken Barn → Sipiso-piso Waterfall → Makan malam → Check in Hotel Berastagi</div>
+              <div class="itinerary-day"><strong>Day 3:</strong> 04.00 Hiking Sibayak (optional) → Sarapan, check out → Sarune Cafe → Bukit Gundaling → Sikulikap Waterfall → Istana Maimoon → Tjong A Fie Mansion → Oleh-oleh Medan → Makan siang → Drop off Airport → Tour Finish 🙏</div>
+            </div>
+            <a href="https://wa.me/6281397606622?text=Halo!%20Saya%20minat%20Paket%203H2M." target="_blank" class="btn-whatsapp w-full py-3 rounded-xl flex items-center justify-center font-semibold">
+              <i class="fab fa-whatsapp mr-2"></i> <span data-i18n="btn-book-now">Booking Sekarang</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Paket 4 Hari 3 Malam -->
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden package-card fade-in">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-800 dark:text-white" data-i18n="package-4-title">Paket 4 Hari 3 Malam</h3>
+            <p class="text-3xl font-extrabold text-green-600 mb-4">RM 1600 (3 orang)</p>
+            <p class="text-lg text-gray-600 mb-2" id="price-4h3m"></p>
+            <p class="text-sm text-red-500 mb-4" data-i18n="hiking-note-2">* Hiking Sibayak: RM 100 untuk 2 orang</p>
+            <div class="space-y-3 mb-6 text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+              <div class="itinerary-day"><strong>Day 1:</strong> Pick up Airport → Mbah Damanik → Kebun Teh Sidamanik → Simarjarunjung View → Panorama Parapat → Pantai I Love Toba → Ferry in Samosir → Makan malam → Check in Hotel Samosir</div>
+              <div class="itinerary-day"><strong>Day 2:</strong> Batu Siallagan → Tomok Village / Palace → Pantai Batu Hoda → Jembatan Tano Ponggol → Tulas View / Bukit Burung → Holbung Hills → Bukit Sibea-bea → Efrata Waterfall → Aek Natonang / Danau Sidohoni → Makan malam → Stay Hotel Samosir</div>
+              <div class="itinerary-day"><strong>Day 3:</strong> Sarapan, check out → Tele Tower → Loken Barn → Sipiso-piso Waterfall → Sarune Cafe → Gundaling Hill → Pasar Buah Berastagi → Hot Spring Sidebuk-debuk → Makan malam → Check in Hotel Berastagi</div>
+              <div class="itinerary-day"><strong>Day 4:</strong> 04.00 Hiking Sibayak (optional) → Sikulikap Waterfall → Istana Maimoon → Tjong A Fie Mansion → Vihara Medan → Oleh-oleh Medan → Drop off Airport / Hotel Medan → Tour Finish 🙏</div>
+            </div>
+            <a href="https://wa.me/6281397606622?text=Halo!%20Saya%20minat%20Paket%204H3M." target="_blank" class="btn-whatsapp w-full py-3 rounded-xl flex items-center justify-center font-semibold">
+              <i class="fab fa-whatsapp mr-2"></i> <span data-i18n="btn-book-now">Booking Sekarang</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Paket 5 Hari 4 Malam (Paket 1) -->
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden package-card fade-in">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-800 dark:text-white" data-i18n="package-5-title-1">Paket 5 Hari 4 Malam – Paket 1</h3>
+            <p class="text-3xl font-extrabold text-green-600 mb-4">RM 1800 (2 orang)</p>
+            <p class="text-lg text-gray-600 mb-2" id="price-5h4m1"></p>
+            <p class="text-sm text-red-500 mb-4" data-i18n="hiking-note-3">* Hiking Sibayak: RM 75/orang</p>
+            <div class="space-y-3 mb-6 text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+              <div class="itinerary-day"><strong>Day 1:</strong> Pick up Airport → Sukulikap Waterfall → Hot Spring Sidebuk-debuk → Makan malam → Check in Hotel Berastagi</div>
+              <div class="itinerary-day"><strong>Day 2:</strong> 04.00 Hiking Sibayak (optional) → Sarune Cafe → Savana Sinabung → Danau Lau Kawar → Pasar Buah Berastagi → Bukit Gundaling → Lumbini Park / Tangke Tabu → Makan malam → Stay Hotel Berastagi</div>
+              <div class="itinerary-day"><strong>Day 3:</strong> Sipiso-piso Waterfall → Loken Barn → Tele Tower → Efrata Waterfall → Holbung Hills → Bukit Cinta → Bukit Burung → Pantai Batu Hoda → Makan malam → Check in Hotel Samosir</div>
+              <div class="itinerary-day"><strong>Day 4:</strong> Batu Siallagan → Ferry out Samosir → Simarjarunjung View → Kebun Teh Sidamanik → Air Bah Manik → On the way Medan → Makan malam → Check in Hotel Medan</div>
+              <div class="itinerary-day"><strong>Day 5:</strong> Istana Maimoon → Masjid Raya → Oleh-oleh Medan → Shopping Batik / Mall → Drop off Kualanamu Airport → Tour Finish 🙏</div>
+            </div>
+            <a href="https://wa.me/6281397606622?text=Halo!%20Saya%20minat%20Paket%205H4M%20(Paket%201)." target="_blank" class="btn-whatsapp w-full py-3 rounded-xl flex items-center justify-center font-semibold">
+              <i class="fab fa-whatsapp mr-2"></i> <span data-i18n="btn-book-now">Booking Sekarang</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Paket 5 Hari 4 Malam (Paket 2) -->
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden package-card fade-in">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-800 dark:text-white" data-i18n="package-5-title-2">Paket 5 Hari 4 Malam – Paket 2</h3>
+            <p class="text-3xl font-extrabold text-green-600 mb-4">RM 1800 (2 orang)</p>
+            <p class="text-lg text-gray-600 mb-2" id="price-5h4m2"></p>
+            <p class="text-sm text-red-500 mb-4" data-i18n="hiking-note">* Hiking Sibayak: RM 100/pax (cash)</p>
+            <div class="space-y-3 mb-6 text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+              <div class="itinerary-day"><strong>Day 1:</strong> Pick up Kualanamu Airport → Paten Jaya & Mbah Damanik → Kebun Teh Sidamanik → Simarjarunjung View → Ferry in Samosir → Pantai Batu Hoda → Makan malam → Check in Hotel Samosir</div>
+              <div class="itinerary-day"><strong>Day 2:</strong> Batu Siallagan → Bukit Burung View → Holbung Hills → Bukit Sibea-bea → Efrata Waterfall → Jembatan Tano Ponggol → Tomok Palace → Makan malam → Check in Hotel Samosir</div>
+              <div class="itinerary-day"><strong>Day 3:</strong> Tele Tower → Loken Barn → Sipiso-piso Waterfall → Sarune Cafe → Gundaling Hill → Pasar Buah Berastagi → Makan malam → Check in Hotel Berastagi</div>
+              <div class="itinerary-day"><strong>Day 4:</strong> 04.00 Hiking Sibayak (optional) → Savana Sinabung → Lau Kawar Lake → Hot Spring Sidebuk-debuk → Bukit Gundaling → Lumbini Park → Makan malam → Stay Hotel Berastagi</div>
+              <div class="itinerary-day"><strong>Day 5:</strong> Sikulikap Waterfall → Istana Maimoon → Tjong A Fie Mansion → Vihara Medan → Oleh-oleh Medan → Shopping Mall / Batik → Drop off Airport → Tour Finish 🙏</div>
+            </div>
+            <a href="https://wa.me/6281397606622?text=Halo!%20Saya%20minat%20Paket%205H4M%20(Paket%202)." target="_blank" class="btn-whatsapp w-full py-3 rounded-xl flex items-center justify-center font-semibold">
+              <i class="fab fa-whatsapp mr-2"></i> <span data-i18n="btn-book-now">Booking Sekarang</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Paket 6 Hari 5 Malam -->
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden package-card fade-in">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-800 dark:text-white" data-i18n="package-6-title">Paket 6 Hari 5 Malam</h3>
+            <p class="text-3xl font-extrabold text-green-600 mb-4">RM 2200 (2 orang)</p>
+            <p class="text-lg text-gray-600 mb-2" id="price-6h5m"></p>
+            <p class="text-sm text-red-500 mb-4" data-i18n="hiking-note">* Hiking Sibayak: RM 100/pax (cash)</p>
+            <div class="space-y-3 mb-6 text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+              <div class="itinerary-day"><strong>Day 1:</strong> Pick up Kualanamu Airport → Paten Jaya & Air Bah Manik → Kebun Teh Sidamanik → Simarjarunjung View → Ferry in Samosir → Batu Passa → Check in Hotel Samosir</div>
+              <div class="itinerary-day"><strong>Day 2:</strong> Batu Siallagan → Tomok Palace → Pantai Batu Hoda → Jembatan Tano Ponggol → Holbung Hills → Bukit Sibea-bea → Efrata Waterfall → Stay Hotel Samosir</div>
+              <div class="itinerary-day"><strong>Day 3:</strong> Geosite Sipinsur → Huta Ginjang → Pantai Bul Bul → Khairos Cafe → Bukit Senyum → Pantai Bebas Parapat → Check in Hotel Parapat</div>
+              <div class="itinerary-day"><strong>Day 4:</strong> Sipiso-piso Waterfall → Loken Barn → Paropo – Silalahi → Pasar Buah Berastagi → Gundaling Hill → Check in Hotel Berastagi</div>
+              <div class="itinerary-day"><strong>Day 5:</strong> 04.00 Hiking Sibayak (optional) → Sarune Cafe → Savana Sinabung → Danau Lau Kawar → Sikulikap Waterfall → Sibolang Durian → Check in Hotel Medan</div>
+              <div class="itinerary-day"><strong>Day 6:</strong> Istana Maimoon → Tjong A Fie Mansion → Vihara Medan → Oleh-oleh Medan & Shopping Batik → Drop off Airport → Tour Finish 🙏</div>
+            </div>
+            <a href="https://wa.me/6281397606622?text=Halo!%20Saya%20minat%20Paket%206H5M." target="_blank" class="btn-whatsapp w-full py-3 rounded-xl flex items-center justify-center font-semibold">
+              <i class="fab fa-whatsapp mr-2"></i> <span data-i18n="btn-book-now">Booking Sekarang</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Fasilitas Paket (Semua Paket) -->
+        <div class="bg-white dark:bg-gray-700 rounded-2xl shadow-lg p-8 fade-in">
+          <h3 class="text-2xl font-bold mb-6 text-center">💡 Fasilitas Paket (Semua Paket)</h3>
+          <div class="space-y-6 text-sm">
+            <div>
+              <p class="font-semibold text-green-600">✅ Termasuk:</p>
+              <ul class="space-y-1 text-gray-700 dark:text-gray-300">
+                <li>• Driver Profesional</li>
+                <li>• Mobil AC Nyaman</li>
+                <li>• BBM & Tol</li>
+                <li>• Tiket Masuk & Ferry</li>
+                <li>• Air Mineral</li>
+                <li>• Makan Driver</li>
+                <li>• Penginapan Driver</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-semibold text-red-500">❌ Tidak Termasuk:</p>
+              <ul class="space-y-1 text-gray-700 dark:text-gray-300">
+                <li>• Hotel Penginapan</li>
+                <li>• Makan Siang & Malam</li>
+                <li>• Guide Hiking Sibayak</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-semibold text-blue-500">📌 Catatan:</p>
+              <p class="text-gray-700 dark:text-gray-300 text-sm">
+                Kami juga menyediakan paket <strong>termasuk hotel</strong>. Harga berbeda, bisa dibahas via chat pribadi.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script>
+    // === SET NILAI TUKAR DI SINI ===
+    const exchangeRate = 3500; // 1 RM = 3500 IDR
+
+    // Fungsi format angka ke Rupiah
+    function formatRupiah(amount) {
+      return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      }).format(amount);
+    }
+
+    // Update harga di semua paket
+    document.getElementById('price-3h2m').textContent = `≈ ${formatRupiah(1200 * exchangeRate)} untuk 2 orang`;
+    document.getElementById('price-4h3m').textContent = `≈ ${formatRupiah(1600 * exchangeRate)} untuk 3 orang`;
+    document.getElementById('price-5h4m1').textContent = `≈ ${formatRupiah(1800 * exchangeRate)} untuk 2 orang`;
+    document.getElementById('price-5h4m2').textContent = `≈ ${formatRupiah(1800 * exchangeRate)} untuk 2 orang`;
+    document.getElementById('price-6h5m').textContent = `≈ ${formatRupiah(2200 * exchangeRate)} untuk 2 orang`;
+
+    // === TERJEMAHAN LENGKAP ===
+    const translations = {
+      id: {
+        "title": "MEDAN TOBA SUMATERA | Wisata Halal Medan - Danau Toba",
+        "nav-home": "Beranda",
+        "nav-packages": "Paket Wisata",
+        "nav-destinations": "Destinasi",
+        "nav-gallery": "Galeri",
+        "nav-about": "Tentang Kami",
+        "nav-contact": "Kontak",
+        "lang-toggle": "EN",
+        "theme-toggle": "Mode Gelap",
+        "hero-title": "Wisata Nyaman & Halal\nMedan – Danau Toba",
+        "hero-desc": "Dengan supir Muslim lokal, mobil bersih, dan itinerary yang fleksibel. Pengalaman tak terlupakan dimulai dari sini.",
+        "btn-book": "Pesan via WhatsApp",
+        "btn-see-packages": "Lihat Paket",
+        "packages-title": "Paket Wisata Tersedia",
+        "packages-desc": "Pilih paket yang sesuai dengan waktu dan anggaran Anda.",
+        "package-3-title": "Paket 3 Hari 2 Malam",
+        "package-4-title": "Paket 4 Hari 3 Malam",
+        "package-5-title-1": "Paket 5 Hari 4 Malam – Paket 1",
+        "package-5-title-2": "Paket 5 Hari 4 Malam – Paket 2",
+        "package-6-title": "Paket 6 Hari 5 Malam",
+        "hiking-note": "* Hiking Sibayak: RM 100/pax (cash)",
+        "hiking-note-2": "* Hiking Sibayak: RM 100 untuk 2 orang",
+        "hiking-note-3": "* Hiking Sibayak: RM 75/orang",
+        "btn-book-now": "Booking Sekarang",
+        "stat-customers": "Pelanggan Puas",
+        "stat-experience": "Pengalaman",
+        "stat-halal": "Muslim Friendly"
+      },
+      en: {
+        "title": "MEDAN TOBA SUMATERA | Halal Tour Medan - Lake Toba",
+        "nav-home": "Home",
+        "nav-packages": "Tour Packages",
+        "nav-destinations": "Destinations",
+        "nav-gallery": "Gallery",
+        "nav-about": "About Us",
+        "nav-contact": "Contact",
+        "lang-toggle": "ID",
+        "theme-toggle": "Light Mode",
+        "hero-title": "Comfortable & Halal Travel\nMedan – Lake Toba",
+        "hero-desc": "With local Muslim drivers, clean vehicles, and flexible itineraries. Unforgettable experiences start here.",
+        "btn-book": "Book via WhatsApp",
+        "btn-see-packages": "View Packages",
+        "packages-title": "Available Tour Packages",
+        "packages-desc": "Choose the package that suits your time and budget.",
+        "package-3-title": "3 Days 2 Nights Package",
+        "package-4-title": "4 Days 3 Nights Package",
+        "package-5-title-1": "5 Days 4 Nights Package – Package 1",
+        "package-5-title-2": "5 Days 4 Nights Package – Package 2",
+        "package-6-title": "6 Days 5 Nights Package",
+        "hiking-note": "* Sibayak Hiking: RM 100/pax (cash)",
+        "hiking-note-2": "* Sibayak Hiking: RM 100 for 2 people",
+        "hiking-note-3": "* Sibayak Hiking: RM 75/person",
+        "btn-book-now": "Book Now",
+        "stat-customers": "Satisfied Customers",
+        "stat-experience": "Years of Experience",
+        "stat-halal": "100% Halal"
+      }
+    };
+
+    let currentLang = localStorage.getItem('toba-lang') || 'id';
+    let currentTheme = localStorage.getItem('toba-theme') || 'light';
+
+    function applyLanguage(lang) {
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang][key]) el.textContent = translations[lang][key];
+      });
+      document.documentElement.lang = lang;
+      document.title = translations[lang].title;
+    }
+
+    function applyTheme(theme) {
+      const html = document.documentElement;
+      if (theme === 'dark') {
+        html.classList.add('dark');
+        document.getElementById('theme-toggle').innerHTML = '<i class="fas fa-sun"></i>';
+        document.getElementById('theme-toggle-mobile').innerHTML = '<i class="fas fa-sun"></i> <span data-i18n="theme-toggle">Mode Terang</span>';
+      } else {
+        html.classList.remove('dark');
+        document.getElementById('theme-toggle').innerHTML = '<i class="fas fa-moon"></i>';
+        document.getElementById('theme-toggle-mobile').innerHTML = '<i class="fas fa-moon"></i> <span data-i18n="theme-toggle">Mode Gelap</span>';
+      }
+      applyLanguage(currentLang);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      applyLanguage(currentLang);
+      applyTheme(currentTheme);
+
+      document.getElementById('lang-toggle').textContent = currentLang === 'id' ? 'EN' : 'ID';
+      document.getElementById('lang-toggle-mobile').textContent = currentLang === 'id' ? 'EN' : 'ID';
+    });
+
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('toba-theme', currentTheme);
+      applyTheme(currentTheme);
+    });
+
+    document.getElementById('lang-toggle').addEventListener('click', () => {
+      currentLang = currentLang === 'id' ? 'en' : 'id';
+      localStorage.setItem('toba-lang', currentLang);
+      applyLanguage(currentLang);
+      document.getElementById('lang-toggle').textContent = currentLang === 'id' ? 'EN' : 'ID';
+      document.getElementById('lang-toggle-mobile').textContent = currentLang === 'id' ? 'EN' : 'ID';
+    });
+
+    document.getElementById('theme-toggle-mobile').addEventListener('click', () => {
+      currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('toba-theme', currentTheme);
+      applyTheme(currentTheme);
+    });
+
+    document.getElementById('lang-toggle-mobile').addEventListener('click', () => {
+      currentLang = currentLang === 'id' ? 'en' : 'id';
+      localStorage.setItem('toba-lang', currentLang);
+      applyLanguage(currentLang);
+      document.getElementById('lang-toggle').textContent = currentLang === 'id' ? 'EN' : 'ID';
+      document.getElementById('lang-toggle-mobile').textContent = currentLang === 'id' ? 'EN' : 'ID';
+    });
+
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOnScroll = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('active');
+        appearOnScroll.unobserve(entry.target);
+      });
+    }, { threshold: 0.1 });
+    faders.forEach(fader => appearOnScroll.observe(fader));
+  </script>
+</body>
+</html>
+```
